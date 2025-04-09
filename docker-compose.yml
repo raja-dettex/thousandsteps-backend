@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  thousandsteps-app:
+    build: .
+    container_name: thousandsteps-app
+    ports:
+      - "8000:8000"
+    command: python main.py  # if you're not using uvicorn
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+      - DATABASE_URI=postgresql+asyncpg://neondb_owner:npg_qWcZyeGgua21@ep-red-union-a44wyiep-pooler.us-east-1.aws.neon.tech/thousandsteps
