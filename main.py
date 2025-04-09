@@ -10,12 +10,16 @@ from db import init_db
 import asyncio
 
 app = FastAPI()
+origins = [
+    "https://thousandsteps-frontend-production.up.railway.app"
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allow all origins
+    allow_origins=origins,       # not ["*"]!
     allow_credentials=True,
-    allow_methods=["*"],  # Allow all HTTP methods
-    allow_headers=["*"],  # Allow all headers
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 app.include_router(router, prefix='/v1/users')
 app.include_router(trips_router, prefix='/v1/trips')
